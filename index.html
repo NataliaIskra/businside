@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Своё дело — не почитать, а попробовать · Нови Сад</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700;900&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FBF8F2;
+    --bg-alt: #F0E4D6;
+    --ink: #24211D;
+    --text: #2B2B2B;
+    --text-muted: #6f6a60;
+    --accent: #C36F4E;
+    --accent-deep: #A8563C;
+    --border: #E3D9C4;
+    --font-serif: 'Merriweather', Georgia, serif;
+    --font-sans: 'Nunito Sans', -apple-system, sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--font-sans);
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+    font-size: 17px;
+    -webkit-font-smoothing: antialiased;
+  }
+  .container { width: 88%; max-width: 780px; margin: 0 auto; }
+  a { color: inherit; text-decoration: none; }
+
+  .eyebrow {
+    font-family: var(--font-sans);
+    font-size: 0.78rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent-deep);
+    font-weight: 700;
+    margin-bottom: 18px;
+  }
+
+  h1, h2, h3 { font-family: var(--font-serif); font-weight: 900; line-height: 1.12; color: var(--ink); }
+  h2 { font-size: clamp(2rem, 1.6rem + 2vw, 2.9rem); margin-bottom: 36px; letter-spacing: -0.01em; }
+
+  .btn {
+    display: inline-block;
+    padding: 16px 36px;
+    font-family: var(--font-sans);
+    font-weight: 700;
+    font-size: 1rem;
+    color: #fff;
+    background: var(--accent);
+    border: none;
+    cursor: pointer;
+    letter-spacing: 0.01em;
+  }
+  .btn:hover { background: var(--accent-deep); }
+
+  header {
+    padding: 22px 0;
+  }
+  .header-row { display: flex; justify-content: space-between; align-items: center; }
+  .logo { font-family: var(--font-serif); font-weight: 900; font-size: 1.3rem; color: var(--ink); }
+  .lang-switch { display: flex; gap: 6px; font-size: 0.8rem; }
+  .lang-switch a { padding: 4px 10px; border: 1px solid var(--border); color: var(--text-muted); }
+  .lang-switch a.active { background: var(--accent); color: #fff; border-color: var(--accent); font-weight: 700; }
+
+  section { padding: 84px 0; }
+  .section-cream { background: var(--bg); }
+  .section-tint { background: var(--bg-alt); }
+  .section-dark { background: var(--ink); color: #F2EAD9; }
+  .section-dark h2 { color: #F2EAD9; }
+  .section-dark .text-muted { color: #b8b1a1; }
+
+  .hero { padding: 90px 0 96px; }
+  .hero h1 {
+    font-size: clamp(2.4rem, 1.8rem + 3.6vw, 4.2rem);
+    margin-bottom: 28px;
+    max-width: 680px;
+    letter-spacing: -0.015em;
+  }
+  .hero h1 em { font-style: normal; color: var(--accent); }
+  .hero p { font-size: 1.25rem; color: var(--text-muted); max-width: 520px; margin-bottom: 40px; }
+
+  .big-num-list { list-style: none; }
+  .big-num-list li {
+    padding: 30px 0;
+    border-top: 2px solid var(--ink);
+    display: grid;
+    grid-template-columns: 70px 1fr;
+    gap: 20px;
+    align-items: start;
+  }
+  .big-num-list li:last-child { border-bottom: 2px solid var(--ink); }
+  .big-num-list .num { font-family: var(--font-serif); font-weight: 900; font-size: 2.2rem; color: var(--accent); line-height: 1; }
+  .big-num-list .body-text { font-size: 1.1rem; padding-top: 6px; }
+
+  .weeks-list { list-style: none; }
+  .weeks-list li {
+    padding: 26px 0;
+    border-top: 2px solid var(--border);
+    display: grid;
+    grid-template-columns: 130px 1fr;
+    gap: 16px;
+  }
+  .weeks-list li:last-child { border-bottom: 2px solid var(--border); }
+  .weeks-list .wk { font-family: var(--font-sans); font-weight: 800; font-size: 0.9rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.04em; padding-top: 4px; }
+  .weeks-list b { display: block; font-size: 1.15rem; margin-bottom: 4px; font-family: var(--font-serif); }
+  .weeks-list span.sub { color: var(--text-muted); }
+  .demo-day {
+    margin-top: 30px;
+    padding: 22px 28px;
+    background: var(--accent);
+    color: #fff;
+    font-family: var(--font-serif);
+    font-weight: 900;
+    font-size: 1.2rem;
+    display: inline-block;
+  }
+
+  .team-grid { display: grid; grid-template-columns: 1fr; gap: 24px; }
+  @media (min-width: 680px) { .team-grid { grid-template-columns: repeat(3, 1fr); } }
+  .team-card { background: var(--bg); border: 2px solid var(--ink); padding: 28px 24px; }
+  .avatar {
+    width: 64px; height: 64px;
+    background: var(--accent);
+    color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-serif); font-weight: 900; font-size: 1.6rem;
+    margin-bottom: 18px;
+  }
+  .team-card .role { font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent-deep); font-weight: 800; margin-bottom: 6px; }
+  .team-card h4 { font-family: var(--font-serif); font-size: 1.3rem; margin-bottom: 6px; }
+  .team-card p { font-size: 0.92rem; color: var(--text-muted); }
+
+  .details-grid { display: grid; grid-template-columns: 1fr; gap: 0; border-top: 2px solid var(--ink); }
+  @media (min-width: 680px) { .details-grid { grid-template-columns: 1fr 1fr; } }
+  .detail-row { padding: 22px 0; border-bottom: 2px solid var(--ink); }
+  @media (min-width: 680px) { .detail-row:nth-child(odd) { padding-right: 30px; border-right: 2px solid var(--ink); } .detail-row:nth-child(even) { padding-left: 30px; } }
+  .detail-row .k { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent-deep); font-weight: 800; margin-bottom: 6px; }
+  .detail-row .v { font-size: 1.15rem; font-family: var(--font-serif); }
+
+  .price-box { background: var(--bg); border: 3px solid var(--ink); padding: 48px 44px; max-width: 480px; position: relative; }
+  .price-badge { display: inline-block; font-size: 0.8rem; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; background: var(--accent); color: #fff; padding: 8px 16px; margin-bottom: 26px; }
+  .price-num { font-family: var(--font-serif); font-size: 3.2rem; font-weight: 900; line-height: 1; }
+  .price-num .old { font-size: 1.5rem; font-weight: 400; color: var(--text-muted); text-decoration: line-through; margin-left: 12px; }
+  .price-eur { color: var(--text-muted); margin: 10px 0 30px; font-size: 1.05rem; }
+  .price-box ul { list-style: none; margin-bottom: 34px; }
+  .price-box ul li { padding: 10px 0; border-top: 1px solid var(--border); font-size: 0.98rem; }
+  .price-note { font-size: 0.82rem; color: var(--text-muted); margin-top: 24px; line-height: 1.6; }
+
+  .faq-item { padding: 26px 0; border-top: 2px solid var(--border); }
+  .faq-item:last-child { border-bottom: 2px solid var(--border); }
+  .faq-item h3 { font-family: var(--font-serif); font-size: 1.2rem; font-weight: 700; margin-bottom: 10px; }
+  .faq-item p { color: var(--text-muted); font-size: 1.02rem; }
+
+  .cta-final h2 { margin-bottom: 16px; }
+  .cta-final p { color: #b8b1a1; margin-bottom: 34px; max-width: 480px; font-size: 1.15rem; }
+
+  footer { padding: 40px 0; }
+  .footer-row { display: flex; flex-direction: column; gap: 20px; font-size: 0.9rem; color: var(--text-muted); }
+  @media (min-width: 680px) { .footer-row { flex-direction: row; justify-content: space-between; } }
+  footer a { color: var(--text-muted); border-bottom: 1px solid var(--border); }
+  footer a:hover { color: var(--accent); border-color: var(--accent); }
+</style>
+</head>
+<body>
+
+  <header>
+    <div class="container header-row">
+      <div class="logo">SparkLab</div>
+      <div class="lang-switch">
+        <a href="#" class="active">RU</a>
+        <a href="#">SR</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero section-cream">
+    <div class="container">
+      <p class="eyebrow">Офлайн · Нови Сад · старт 26 сентября</p>
+      <h1>Для тех, кто хочет попробовать своё дело, а не <em>почитать</em> про него</h1>
+      <p>Для подростков 14–16 лет в Нови Саде. Пять недель по выходным, вместе с нами, шаг за шагом.</p>
+      <a href="#contact" class="btn">Задать вопрос</a>
+    </div>
+  </section>
+
+  <section class="section-tint">
+    <div class="container">
+      <h2>Кому подходит</h2>
+      <ul class="big-num-list">
+        <li><span class="num">01</span><span class="body-text">Думают, чем займутся, когда вырастут, и хотят попробовать разные варианты</span></li>
+        <li><span class="num">02</span><span class="body-text">Уже что-то пробовали заработать и хочется погрузиться в это глубже</span></li>
+        <li><span class="num">03</span><span class="body-text">Смотрят видео или читают про предпринимателей и видят себя в этой роли</span></li>
+        <li><span class="num">04</span><span class="body-text">Хотят зарабатывать сами, а не просить у родителей</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section-cream">
+    <div class="container">
+      <h2>Что получит подросток на выходе</h2>
+      <ul class="big-num-list">
+        <li><span class="num">01</span><span class="body-text">Свой проект, доведённый от идеи до результата</span></li>
+        <li><span class="num">02</span><span class="body-text">Реальный контакт с клиентом, возможно — первую продажу</span></li>
+        <li><span class="num">03</span><span class="body-text">Опыт выступления на Demo Day</span></li>
+        <li><span class="num">04</span><span class="body-text">Обратную связь от практикующих предпринимателей</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section-tint">
+    <div class="container">
+      <h2>Как проходит программа</h2>
+      <p style="color:var(--text-muted); margin-bottom: 32px; font-size: 1.1rem;">5 недель, 10 встреч по 2 в неделю — в субботу и воскресенье, 1,5–2 часа каждая.</p>
+      <ul class="weeks-list">
+        <li><span class="wk">Неделя 1</span><span><b>С чего начать</b><span class="sub">Кто твой клиент и конкуренты</span></span></li>
+        <li><span class="wk">Неделя 2</span><span><b>Модель бизнеса</b><span class="sub">Первые клиенты</span></span></li>
+        <li><span class="wk">Неделя 3</span><span><b>Продажи</b><span class="sub">Каналы и масштабирование</span></span></li>
+        <li><span class="wk">Неделя 4</span><span><b>Как рассказать о продукте понятно</b><span class="sub">Деньги</span></span></li>
+        <li><span class="wk">Неделя 5</span><span><b>Работа с людьми и живой предприниматель</b><span class="sub">Готовим историю для финала</span></span></li>
+      </ul>
+      <div class="demo-day">Demo Day — после программы</div>
+    </div>
+  </section>
+
+  <section class="section-cream">
+    <div class="container">
+      <h2>Кто ведёт</h2>
+      <div class="team-grid">
+        <div class="team-card">
+          <div class="avatar">Н</div>
+          <div class="role">Русскоязычная группа</div>
+          <h4>Наташа</h4>
+          <p>Био скоро появится</p>
+        </div>
+        <div class="team-card">
+          <div class="avatar">Г</div>
+          <div class="role">Русскоязычная группа</div>
+          <h4>Грау</h4>
+          <p>Био скоро появится</p>
+        </div>
+        <div class="team-card">
+          <div class="avatar">?</div>
+          <div class="role">Сербоязычная группа</div>
+          <h4>Уточняется</h4>
+          <p>Скоро объявим</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-tint">
+    <div class="container">
+      <h2>Формат и детали</h2>
+      <div class="details-grid">
+        <div class="detail-row"><div class="k">Место</div><div class="v">Нови Сад, Трг 1. Маjа 4</div></div>
+        <div class="detail-row"><div class="k">Даты</div><div class="v">По выходным, 5 недель, старт 26 сентября</div></div>
+        <div class="detail-row"><div class="k">Длительность встречи</div><div class="v">1,5–2 часа</div></div>
+        <div class="detail-row"><div class="k">Группа</div><div class="v">8–16 человек</div></div>
+        <div class="detail-row"><div class="k">Возраст</div><div class="v">14–16 лет</div></div>
+        <div class="detail-row"><div class="k">Языки</div><div class="v">Русскоязычный и сербоязычный потоки</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-cream" id="pricing">
+    <div class="container">
+      <h2>Стоимость</h2>
+      <div class="price-box">
+        <span class="price-badge">Early bird до 12 сентября</span>
+        <div class="price-num">22 000 <span class="old">26 000</span></div>
+        <div class="price-eur">динар (≈186€ вместо ≈220€)</div>
+        <ul>
+          <li>10 встреч + Demo Day</li>
+          <li>Группа 8–16 человек</li>
+          <li>Встреча с практикующим предпринимателем</li>
+          <li>Офлайн, Трг 1. Маjа 4, Нови Сад</li>
+        </ul>
+        <a href="#contact" class="btn">Задать вопрос</a>
+        <p class="price-note">Цена в евро указана для ориентира. Списание производится в динарах (RSD) по курсу Народного банка Сербии на момент оплаты.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-tint">
+    <div class="container">
+      <h2>Частые вопросы</h2>
+      <div class="faq-item">
+        <h3>Нужен ли опыт или готовая идея?</h3>
+        <p>Нет. Программа открыта для всех, кто просто хочет попробовать — опыт и идея не обязательны.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Ребёнку нужно будет выступать перед незнакомыми людьми?</h3>
+        <p>На Demo Day — да, но это подготовленное выступление о своём проекте перед знакомой группой и приглашёнными гостями, не экзамен и не давление.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Что если ребёнок пропустит одну из встреч?</h3>
+        <p><em>Ответ уточняется</em></p>
+      </div>
+      <div class="faq-item">
+        <h3>Есть ли скидка, если участвуют двое детей из семьи?</h3>
+        <p><em>Ответ уточняется</em></p>
+      </div>
+      <div class="faq-item">
+        <h3>Можно ли оплатить частями?</h3>
+        <p><em>Ответ уточняется</em></p>
+      </div>
+      <div class="faq-item">
+        <h3>Ребёнку 13 или 17 лет — можно попробовать?</h3>
+        <p><em>Ответ уточняется</em></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-dark cta-final" id="contact">
+    <div class="container">
+      <h2>Записаться на интенсив</h2>
+      <p>Мест ограниченное количество: от 8 до 16 человек в группе.</p>
+      <a href="https://t.me/natalia_frushkaiskra" target="_blank" class="btn">Написать нам</a>
+    </div>
+  </section>
+
+  <footer class="section-cream">
+    <div class="container footer-row">
+      <div>SparkLab · офлайн-интенсив от команды Iskra Montessori</div>
+      <div>
+        <a href="https://t.me/fruiskra" target="_blank">Телеграм-канал</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
