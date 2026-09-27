@@ -122,16 +122,22 @@
     display: inline-block;
   }
 
-  .team-grid { display: grid; grid-template-columns: 1fr; gap: 24px; }
-  @media (min-width: 680px) { .team-grid { grid-template-columns: repeat(3, 1fr); } }
-  .team-card { background: var(--bg); border: 2px solid var(--ink); padding: 28px 24px; }
+  .team-grid { display: flex; flex-direction: column; gap: 0; }
+  .team-card { background: var(--bg); border: none; border-top: 2px solid var(--ink); padding: 32px 0; display: flex; gap: 22px; align-items: flex-start; }
+  .team-grid .team-card:last-child { border-bottom: 2px solid var(--ink); }
+  .team-card .avatar { flex-shrink: 0; margin-bottom: 0; }
+  @media (max-width: 560px) {
+    .team-card { flex-direction: column; gap: 14px; }
+  }
   .avatar {
     width: 64px; height: 64px;
-    background: var(--accent);
-    color: #fff;
+    border: 1.5px solid var(--border);
+    background: var(--bg-alt);
+    color: var(--text-muted);
     display: flex; align-items: center; justify-content: center;
-    font-family: var(--font-serif); font-weight: 900; font-size: 1.6rem;
+    font-family: var(--font-serif); font-weight: 700; font-size: 1.4rem;
     margin-bottom: 18px;
+    border-radius: 50%;
   }
   .team-card .role { font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent-deep); font-weight: 800; margin-bottom: 6px; }
   .team-card h4 { font-family: var(--font-serif); font-size: 1.3rem; margin-bottom: 6px; }
@@ -234,21 +240,27 @@
       <div class="team-grid">
         <div class="team-card">
           <div class="avatar">Н</div>
-          <div class="role">Русскоязычная группа</div>
-          <h4>Наташа</h4>
-          <p>Био скоро появится</p>
+          <div>
+            <div class="role">Русскоязычная группа</div>
+            <h4>Наталья Кочеткова — математик, предприниматель и управленец</h4>
+            <p>Закончила мех-мат МГУ имени М.В. Ломоносова, 20 лет в IT и управлении, последние 5 лет — предприниматель. Совладелица Монтессори-школы «Искра» и центра поддержки семейного образования в Нови-Саде. Создатель клуборатории: бизнес-клуба для подростков.<br><br>Свои первые деньги заработала в 10 лет — после уроков бежала в мастерскую, где делала ёлочные игрушки, по сдельной оплате.</p>
+          </div>
         </div>
         <div class="team-card">
-          <div class="avatar">Г</div>
-          <div class="role">Русскоязычная группа</div>
-          <h4>Грау</h4>
-          <p>Био скоро появится</p>
+          <div class="avatar">Ю</div>
+          <div>
+            <div class="role">Русскоязычная группа</div>
+            <h4>Юлия Грау Черненко — преподаватель и проектный менеджер с 10-летним опытом</h4>
+            <p>Преподаю подросткам (лицей НИУ ВШЭ) с 2016 года. Преподаватель НИУ Высшая Школа Экономики с 2017 до 2022 года, в том числе лучший преподаватель по итогам голосования студентов в 2020 году. Выпускница университета Кот д'Азур (Франция), программа Smart EdTech. Автор интенсивов и образовательных игр для подростков по основам бизнеса, проектного менеджмента и финансовой грамотности.<br><br>Свои первые деньги заработала в 9 лет на продаже липового цвета в аптеки.</p>
+          </div>
         </div>
         <div class="team-card">
           <div class="avatar">?</div>
-          <div class="role">Сербоязычная группа</div>
-          <h4>Уточняется</h4>
-          <p>Скоро объявим</p>
+          <div>
+            <div class="role">Сербоязычная группа</div>
+            <h4>Ведущий уточняется</h4>
+            <p>Скоро объявим</p>
+          </div>
         </div>
       </div>
     </div>
